@@ -108,4 +108,24 @@
     <servlet-name>everyServlet</servlet-name>
     <url-pattern>/everyServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>cusServlet</display-name>
+    <servlet-name>cusServlet</servlet-name>
+    <servlet-class>cn.tedu.nybike.web.cusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cusServlet</servlet-name>
+    <url-pattern>/cusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>subServlet</display-name>
+    <servlet-name>subServlet</servlet-name>
+    <servlet-class>cn.tedu.nybike.web.subServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>subServlet</servlet-name>
+    <url-pattern>/subServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
