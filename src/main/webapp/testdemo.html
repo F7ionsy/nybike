@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+请输入站点id:<input type="text" id="sid">
+	<button id="bt1">查询！</button> <br>
+	<hr>
+	站点名称:<span id="s_name"></span> <br>
+	站点nba:<span id="s_nba"></span>
+	
+	<script type="text/javascript">
+		$("#bt1").click(function(){
+			
+			var sid=$("#sid").val();
+			if(sid==""){
+				alert("输入为空！");
+			}else
+			{		var url="testdemo?sid="+sid;
+					$.get(url,function(result){
+					var name=result.split(",")[0];
+					var nba=result.split(",")[1];
+					$("#s_name").html(name);
+					$("#s_nba").html(nba);
+				});
+			}
+		});
+ 
+ </script>
+</body>
+</html>

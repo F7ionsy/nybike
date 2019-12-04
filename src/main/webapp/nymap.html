@@ -1,0 +1,72 @@
+<!DOCTYPE html>  
+<html>
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<link rel="stylesheet" href="css/page.css">
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#but{position:absolute;z-index:999}
+#butt{position:absolute;z-index:999}
+#container{height:100%}  
+</style>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=UOCGHpLpwuXkyV2XQOI9dCaN78TH5krN"></script>
+
+<script type="text/javascript" src="js/nybike.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"></script>
+
+
+</head>  
+ 
+<body>  
+
+<div id="but"><button style=margin-left:1000px;margin-top:80px onclick="zixingche()"><img src="img/zixingche.png"></button></div>
+<div id="butt"><button style=margin-left:1000px onclick="chezhuang()"><img src="img/chezhuang.png"></button></div>
+<div id="container"></div> 
+<script type="text/javascript"></script>
+<script type="text/javascript"> 
+var map = new BMap.Map("container");
+// 创建地图实例  
+var point = new BMap.Point(-73.98569, 40.748449);
+// 声明一个用于保存所有marker的数组
+var markerArray=[];
+
+var window=new Map(); 
+var level = new Map(); 
+var docklevel = new Map(); 
+// 是否在使用大图标
+var isBigIcon=true;
+// 创建点坐标  
+map.centerAndZoom(point, 15);
+// 初始化地图，设置中心点坐标和地图级别  
+var opts = {anchor: BMAP_ANCHOR_BOTTOM_RIGHT}
+var smallIconSize=new BMap.Size(10,10);
+var smallIconAnchor=new BMap.Size(5,10);
+var bigIconSize=new BMap.Size(46,50);
+var bigIconAnchor=new BMap.Size(23,50);
+
+var levelMap = new Map(); 
+
+var flag = 0;
+
+
+map.addControl(new BMap.NavigationControl(opts));
+
+map.enableScrollWheelZoom(true); 
+
+map.addControl(new BMap.NavigationControl(opts));
+
+var infoMap=new Map();
+
+
+
+setPoint();
+listen();
+
+</script>  
+</body>  
+</html>

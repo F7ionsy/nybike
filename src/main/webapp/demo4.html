@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body style="width:100%;height:100%">
+<div id="main" style="width:100%;height:700px"></div>
+<script>
+var url = "demo4";
+var service = new Array(7);
+var seriess = new Array(7);
+var xData = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+$.get(url,function(result){
+	for(var i =0;i<7;i++){
+		service[i] = result.yData[i];
+		console.log(service[i]);
+	}
+
+	var myChart = echarts.init(document.getElementById('main'));
+	for(var i =0;i<7;i++){
+		seriess[i]={
+				name: '6月'+(i+1)+'号',
+	            type: 'line',
+	            data: service[i]
+		}
+	}
+    var option = {
+        title: {
+            text: '6.1-6.7'
+        },
+        tooltip: {},
+        legend: {
+            data:['6月1号','6月2号','6月3号','6月4号','6月5号','6月6号','6月7号']
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+        	data: xData
+        },
+        yAxis: {},
+        series: seriess
+        
+    };
+    myChart.setOption(option);
+	
+});
+</script>
+
+
+</body>
+</html>

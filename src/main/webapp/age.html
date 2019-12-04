@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       
+             <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+       <script type="text/javascript">
+       var url = "ageServlet";
+   	$.get(url,function(result){
+   		var Data1 = result.data1;
+   	 var myChart = echarts.init(document.getElementById('container'));
+var dom = document.getElementById("container");
+var option = {
+        title: {
+            text: '年龄分布'
+        },
+        tooltip: {},
+        legend: {
+            data:['年龄']
+        },
+        xAxis: {
+            data: ["18-30岁","31-45岁","46-60岁","61-75岁","76-90岁"]
+        },
+        yAxis: {},
+        series: [{
+            name: '年龄',
+            type: 'bar',
+            data: Data1
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+   	});
+       </script>
+   </body>
+</html>

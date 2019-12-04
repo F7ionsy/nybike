@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+             <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+       <script type="text/javascript">
+       var dom = document.getElementById("container");
+       var myChart = echarts.init(dom);
+       var app = {};
+       option = null;
+       app.title = 'season17_18';
+
+       option = {
+           title: {
+               text: 'season17_18 NBA球员薪水Top20',
+               subtext: '数据来自网络'
+           },
+           tooltip: {
+               trigger: 'axis',
+               axisPointer: {
+                   type: 'shadow'
+               }
+           },
+           legend: {
+               data: ['season17_18']
+           },
+           grid: {
+               left: '3%',
+               right: '4%',
+               bottom: '3%',
+               containLabel: true
+           },
+           xAxis: {
+               type: 'value',
+               boundaryGap: [0, 0.01]
+           },
+           yAxis: {
+               type: 'category',
+               data: ['Stephen Curry','LeBron James','Paul Millsap','Gordon Hayward','Blake Griffin','Kyle Lowry','Russell Westbrook','Mike Conley','James Harden','DeMar DeRozan','Al Horford','Carmelo Anthony','Damian Lillard','Jrue Holiday','Chris Bosh','Kevin Durant','Otto Porter','Chris Paul','C.J. McCollum','Bradley Beal']
+           },
+           series: [
+               {
+                   name: 'season17_18',
+                   type: 'bar',
+                   data: [34682550, 33285709, 31269231, 29727900, 29512900, 28703704,28530608,28530608,28299399,27739975,27734405,26243760,26153057,25686667,25289390,25000000,24773250,24599495,23962573,23775506]
+               }
+           ]
+       };
+       ;
+       if (option && typeof option === "object") {
+           myChart.setOption(option, true);
+       }
+              </script>
+          </body>
+       </html>

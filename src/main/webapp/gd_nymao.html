@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%} 
+</style>  
+</head>
+<body>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=c31cdf2923cabd8513024bd5532fdd22"></script> 
+
+<div id="container"></div> 
+<script type="text/javascript"> 
+var map = new AMap.Map('container');
+var map = new AMap.Map('container', {
+    zoom:11,//级别
+    center: [-73.98569, 40.748449],//中心点坐标
+    viewMode:'3D'//使用3D视图
+});
+</script>
+</body>
+</html>
