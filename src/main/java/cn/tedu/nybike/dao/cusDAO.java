@@ -9,6 +9,7 @@ import java.util.List;
 import cn.tedu.nybike.pojo.cusDO;
 import cn.tedu.nybike.pojo.startDO;
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 
 
@@ -21,10 +22,12 @@ public class cusDAO {
 		}
 	}
 	public List<cusDO> cus() {
-		String sql = "select * from tb_cus";
+		String sql = "select * from tb_cus order by name,lat,lon";
 		//声明存放do对象得集合
 		List<cusDO> list = new LinkedList<cusDO>();
-		try(	Connection conn =DButil2.getHiveConn();
+		try(	
+				Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 				ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

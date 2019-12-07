@@ -9,6 +9,7 @@ import java.util.List;
 import cn.tedu.nybike.pojo.everyDO;
 import cn.tedu.nybike.pojo.startDO;
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 
 
@@ -21,10 +22,11 @@ public class everyDAO {
 		}
 }
 	public List<everyDO> every() {
-		String sql = "select * from tb_every";
+		String sql = "select * from tb_every order by day";
 		//声明存放do对象得集合
 		List<everyDO> list = new ArrayList<everyDO>();
-		try(	Connection conn =DButil2.getHiveConn();
+		try(	Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 				ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

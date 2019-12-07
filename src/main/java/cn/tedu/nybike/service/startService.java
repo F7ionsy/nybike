@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.LinkedMap;
-
 import cn.tedu.nybike.dao.startDAO;
 import cn.tedu.nybike.pojo.Item;
 import cn.tedu.nybike.pojo.TestVO;
@@ -22,7 +20,7 @@ public class startService {
 			xData.add(item);
 		}
 		
-		Map<String, Double[]> yData = new LinkedMap(793);
+		Map<String, Double[]> yData = new  HashMap<String, Double[]>(793);
 		for(startDO tc:list) {
 			Double[] arr= new Double[2];
 			arr[1] = tc.getLat();

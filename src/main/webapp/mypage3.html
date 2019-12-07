@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Starter</title>
+  <script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/bmap.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=3.0&ak=EwTpoqUnadRVmL5xmbfOgZeHFC8a6QjL">
+</script>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+  <link rel="stylesheet" href="dist/css/skins/skin-black.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper" style="font-size:15px">
+  <!-- Main Header -->
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="pull-left image">
+        <div class="pull-left info">
+          <!-- Status -->
+        </div>
+      </div>
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+      </form>
+      <!-- /.search form -->
+      <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree" style="boder:none">
+        <li class="header"style="background:#222D32"><font color="white">光宗耀组：nybike</font></li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="index.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white">nymap 主页</font></span></a>
+        <li class="active"><a href="mypage2.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white">起始站点与结束站点热力图</font></span></a></li>
+         <li class="active"> <a href="mypage3.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white">24小时用户结束站点热力图</font></span></a></li>
+         <li class="active"> <a href="mypage4.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white">订阅用户结束站点热力图</font></span></a></li>
+         <li class="active"> <a href="mypage5.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white"> 6月每天的性别比例图 </font></span></a></li>
+        <li class="active">  <a href="mypage6.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white"> 每天平均时长与最大骑行时长 </font></span></a></li>
+         <li class="active">  <a href="mypage7.html"style="background:#222D32"><i class="fa fa-link"></i> <span><font color="white"> 用户年龄分布与类别占比 </font></span></a></li>
+         </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"style="background:#F0F8FF">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+        
+
+	<div id="div1" style="width:100%;height:690px"></div>
+	<script type="text/javascript">
+	var url = "cusServlet";
+	$.get(url,function(result){
+		var xData = result.xData;
+		var yData = result.yData;
+		var myChart = echarts.init(document.getElementById('div1'));
+		var data = xData;
+		    
+		var geoCoordMap = yData;
+
+		var convertData = function (data) {
+		    var res = [];
+		    for (var i = 0; i < data.length; i++) {
+		        var geoCoord = geoCoordMap[data[i].name];
+		        if (geoCoord) {
+		            res.push({
+		                name: data[i].name,
+		                value: geoCoord.concat(data[i].value)
+		            });
+		        }
+		    }
+		    return res;
+		};
+
+		option = {
+		    title: {
+		        text: '24小时用户结束站点热力图',
+		        
+		        left: 'right'
+		    },
+		    tooltip : {
+		        trigger: 'item'
+		    },
+		    bmap: {
+		        center: [-73.97031815305685, 40.77135411463482],
+		        zoom: 15,
+		        roam: true,
+		       
+		    }, 
+		    series : [
+		        {
+		            name: 'pm2.5',
+		            type: 'scatter',
+		            coordinateSystem: 'bmap',
+		            data: convertData(data),
+		            symbolSize: function (val) {
+		                return val[2] / 10;
+		            },encode:{
+		            	value:2
+		            },
+		            label: {
+		                normal: {
+		                    formatter: '{b}',
+		                    position: 'right',
+		                    show: false
+		                },
+		                emphasis: {
+		                    show: true
+		                }
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: 'purple'
+		                }
+		            }
+		        },
+		        {
+		            name: 'Top 5',
+		            type: 'effectScatter',
+		            coordinateSystem: 'bmap',
+		            data: convertData(data.sort(function (a, b) {
+		                return b.value - a.value;
+		            }).slice(0, 6)),
+		            symbolSize: function (val) {
+		                return val[2] / 10;
+		            },encode:{
+		            	value:2
+		            },
+		            showEffectOn: 'render',
+		            rippleEffect: {
+		                brushType: 'stroke'
+		            },
+		            hoverAnimation: true,
+		            label: {
+		                normal: {
+		                    formatter: '{b}',
+		                    position: 'right',
+		                    show: true
+		                }
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: 'yellow',
+		                    shadowBlur: 10,
+		                    shadowColor: '#333'
+		                }
+		            },
+		            zlevel: 1
+		        }
+		    ]
+		};
+		myChart.setOption(option);
+	});
+	</script>
+
+
+	
+	
+</section>
+    <!-- /.content -->
+  </div>
+</div>
+<!-- ./wrapper -->
+<!-- REQUIRED JS SCRIPTS -->
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+</body>
+</html>

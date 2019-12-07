@@ -8,6 +8,7 @@ import java.util.List;
 
 import cn.tedu.nybike.pojo.endDO;
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 public class endDAO {
 	public static void main(String[] args) {
@@ -18,10 +19,11 @@ public class endDAO {
 		}
 }
 	public List<endDO> listend() {
-		String sql = "select * from tb_end";
+		String sql = "select * from tb_end order by name,lat,lon";
 		//声明存放do对象得集合
 		List<endDO> list = new LinkedList<endDO>();
-		try(	Connection conn =DButil2.getHiveConn();
+		try(	Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 				ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

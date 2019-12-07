@@ -1,10 +1,9 @@
 package cn.tedu.nybike.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.collections.map.LinkedMap;
 
 import cn.tedu.nybike.dao.cusDAO;
 import cn.tedu.nybike.pojo.Item;
@@ -22,7 +21,7 @@ public class cusService {
 			xData.add(item);
 		}
 		
-		Map<String, Double[]> yData = new LinkedMap(800);
+		Map<String, Double[]> yData = new HashMap<String, Double[]>(800);
 		for(cusDO tc:list) {
 			Double[] arr= new Double[2];
 			arr[1] = tc.getLat();

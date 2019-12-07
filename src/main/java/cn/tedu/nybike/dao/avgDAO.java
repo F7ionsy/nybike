@@ -8,6 +8,7 @@ import java.util.List;
 
 import cn.tedu.nybike.pojo.avgDO;
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 public class avgDAO {
 	public static void main(String[] args) {
@@ -19,10 +20,12 @@ public class avgDAO {
 	}
 	
 	public List<avgDO> avg() {
-		String sql = "select * from tb_avg1";
+		String sql = "select * from tb_avg1 order by day";
 		//声明存放do对象得集合
 		List<avgDO> list = new LinkedList<avgDO>();
-		try(Connection conn =DButil2.getHiveConn();
+		try(
+				Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

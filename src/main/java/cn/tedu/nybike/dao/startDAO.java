@@ -9,6 +9,7 @@ import java.util.List;
 import cn.tedu.nybike.pojo.TripcountDO;
 import cn.tedu.nybike.pojo.startDO;
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 public class startDAO {
 	public static void main(String[] args) {
@@ -19,10 +20,11 @@ public class startDAO {
 		}
 }
 	public List<startDO> liststart() {
-		String sql = "select * from tb_start";
+		String sql = "select * from tb_start order by name,lat,lon";
 		//声明存放do对象得集合
 		List<startDO> list = new LinkedList<startDO>();
-		try(	Connection conn =DButil2.getHiveConn();
+		try(	Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 				ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

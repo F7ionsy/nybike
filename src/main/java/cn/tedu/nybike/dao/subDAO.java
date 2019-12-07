@@ -8,6 +8,7 @@ import java.util.List;
 
 import cn.tedu.nybike.pojo.subDO;
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 public class subDAO {
 	
@@ -19,10 +20,11 @@ public class subDAO {
 		}
 }
 	public List<subDO> sub() {
-		String sql = "select * from tb_sub";
+		String sql = "select * from tb_sub order by name,lat,lon";
 		//声明存放do对象得集合
 		List<subDO> list = new LinkedList<subDO>();
-		try(	Connection conn =DButil2.getHiveConn();
+		try(	Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
 				ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

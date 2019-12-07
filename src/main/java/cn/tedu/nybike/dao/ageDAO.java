@@ -9,6 +9,7 @@ import java.util.List;
 import cn.tedu.nybike.pojo.ageDO;
 
 import cn.tedu.nybike.util.DButil2;
+import cn.tedu.nybike.util.DButil3;
 
 
 public class ageDAO {
@@ -23,9 +24,10 @@ public class ageDAO {
 		String sql = "select * from tb_age";
 		//声明存放do对象得集合
 		List<ageDO> list = new LinkedList<ageDO>();
-		try(Connection conn =DButil2.getHiveConn();
+		try(	Connection conn =DButil3.getConn();
+				//Connection conn =DButil2.getHiveConn();
 				PreparedStatement ps = conn.prepareStatement(sql)){
-			ResultSet rs = ps.executeQuery();
+				ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ageDO tc = new ageDO();
 				tc.setCount(rs.getInt("a"));
